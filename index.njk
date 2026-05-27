@@ -12,6 +12,7 @@
 /* ── Reset ────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
   background: #0d1117; /* terminal bg fills before scroll */
   font-family: "Inter", system-ui, sans-serif;
@@ -546,7 +547,25 @@ p { margin: 0; }
         </div>
       </div>
 
-      <div class="scroller-track" role="list" id="work-track"></div>
+      <div class="scroller-track" role="list">
+        {% for p in projects %}
+        <div class="scroller-item" role="listitem">
+          <a class="work-card" href="{{ p.href }}">
+            <div class="work-card-thumb" style="background:{{ p.gradient }}">
+              <div class="work-card-no">№ {{ loop.index }}</div>
+            </div>
+            <div class="work-card-meta">
+              <span class="lbl">{{ p.year }}</span>
+            </div>
+            <h3 class="work-card-title">{{ p.title }}</h3>
+            <div class="work-card-tags">
+              {% for tag in p.stack %}<span class="work-tag">{{ tag }}</span>{% endfor %}
+            </div>
+            <p class="work-card-sub">{{ p.subtitle }}</p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
 
       <div class="container">
         <div class="scroller-bar-wrap"><div class="scroller-bar"></div></div>
@@ -574,7 +593,21 @@ p { margin: 0; }
         </div>
       </div>
 
-      <div class="scroller-track" role="list" id="writing-track"></div>
+      <div class="scroller-track" role="list">
+        {% for p in posts %}
+        <div class="scroller-item" role="listitem">
+          <a class="writing-card" href="{{ p.href }}">
+            <div class="writing-card-header">
+              <span class="lbl">№ {{ loop.index }} · {{ p.date }}</span>
+              <span class="lbl">{{ p.read }}</span>
+            </div>
+            <h3 class="writing-card-title">{{ p.title }}</h3>
+            <p class="writing-card-dek">{{ p.dek }}</p>
+            <div class="writing-card-read">Read →</div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
 
       <div class="container">
         <div class="scroller-bar-wrap"><div class="scroller-bar"></div></div>
@@ -594,18 +627,25 @@ p { margin: 0; }
       <h2 class="sec-title">Résumé.</h2>
       <div class="cv-grid">
         <div>
-          <p id="cv-prose" class="cv-prose"></p>
-          <a id="cv-dl-link" href="#" download class="cv-dl-btn">
+          <p class="cv-prose">{{ site.cv.prose }}</p>
+          {% if site.resumeUrl %}
+          <a href="{{ site.resumeUrl }}" download class="cv-dl-btn">
             <span>↓</span>
             <span>cv.pdf</span>
           </a>
+          {% endif %}
           <div style="margin-top:18px">
-            <span id="cv-last-updated" class="lbl"></span>
+            <span class="lbl">Last updated: {{ site.cv.lastUpdated }}</span>
           </div>
         </div>
         <div class="cv-glance">
           <span class="lbl cv-glance-lbl">At a glance</span>
-          <div id="cv-glance-rows"></div>
+          {% for r in site.cv.glance %}
+          <div class="cv-row">
+            <span class="cv-row-key">{{ r.key }}</span>
+            <span>{{ r.value }}</span>
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -643,8 +683,8 @@ p { margin: 0; }
           </div>
         </div>
         <div class="contact-footer">
-          <div class="contact-note" id="form-status">
-            Or write to <strong id="contact-email" style="color:var(--ink);font-weight:500"></strong>
+          <div class="contact-note">
+            Or write to <strong style="color:var(--ink);font-weight:500">{{ site.email }}</strong>
           </div>
           <button class="contact-submit" type="submit">Send via email →</button>
         </div>
@@ -659,7 +699,7 @@ p { margin: 0; }
       <a href="#">GitHub</a>
       <a href="#">Read.cv</a>
       <a href="#">RSS</a>
-      <a id="footer-email" href="#">—</a>
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
     </div>
   </footer>
 
@@ -682,9 +722,9 @@ const STEPS = [
   { type: 'cmd', text: 'cat about.md' },
   { type: 'out', lines: [
     '<span style="color:#d2a8ff"># About</span>',
-    '<span style="color:#c9d1d9">I build small, careful software.</span>',
-    '<span style="color:#c9d1d9">Mostly web applications — backend in Python and Ruby,</span>',
-    '<span style="color:#c9d1d9">frontend in TypeScript and JavaScript.</span>',
+    '<span style="color:#c9d1d9">I build software that solves problems at their roots.</span>',
+    '<span style="color:#c9d1d9">Proficient in Python, and comfortable with Ruby,</span>',
+    '<span style="color:#c9d1d9">TypeScript, and JavaScript.</span>',
     '',
     '<span style="color:#c9d1d9">I prefer fewer features, done well, over many done poorly.</span>',
   ]},
@@ -725,7 +765,7 @@ function makePromptLine() {
   cursor.className = 'term-cursor';
   cursor.style.display = 'none';
 
-  line.append(prompt, sep, caret, ' ', textSpan, cursor);
+  line.append(prompt, sep, caret, ' ', textSpan, cursor);
   return { line, textSpan, cursor };
 }
 
@@ -747,7 +787,7 @@ async function runTyping() {
       for (const html of step.lines) {
         const d = document.createElement('div');
         d.className = 'term-line';
-        d.innerHTML = html || ' ';
+        d.innerHTML = html || ' ';
         termOut.appendChild(d);
         await sleep(55);
       }
@@ -758,38 +798,6 @@ async function runTyping() {
 }
 
 runTyping();
-
-/* ── Card renderers ───────────────────────────────────────────────── */
-function renderWorkCard(p, i) {
-  const tags = p.stack.map(t => `<span class="work-tag">${t}</span>`).join('');
-  return `<div class="scroller-item" role="listitem">
-    <a class="work-card" href="${p.href}">
-      <div class="work-card-thumb" style="background:${p.gradient}">
-        <div class="work-card-no">№ ${i + 1}</div>
-      </div>
-      <div class="work-card-meta">
-        <span class="lbl">${p.year}</span>
-      </div>
-      <h3 class="work-card-title">${p.title}</h3>
-      <div class="work-card-tags">${tags}</div>
-      <p class="work-card-sub">${p.subtitle}</p>
-    </a>
-  </div>`;
-}
-
-function renderWritingCard(p, i) {
-  return `<div class="scroller-item" role="listitem">
-    <a class="writing-card" href="${p.href}">
-      <div class="writing-card-header">
-        <span class="lbl">№ ${i + 1} · ${p.date}</span>
-        <span class="lbl">${p.read}</span>
-      </div>
-      <h3 class="writing-card-title">${p.title}</h3>
-      <p class="writing-card-dek">${p.dek}</p>
-      <div class="writing-card-read">Read →</div>
-    </a>
-  </div>`;
-}
 
 /* ── Horizontal scrollers ─────────────────────────────────────────── */
 function initScrollers() {
@@ -825,41 +833,16 @@ function initScrollers() {
   });
 }
 
-Promise.all([
-  fetch('./projects.json').then(r => r.json()),
-  fetch('./posts.json').then(r => r.json()),
-  fetch('./site.json').then(r => r.json()),
-]).then(([projects, posts, site]) => {
-  /* Cards */
-  document.getElementById('work-track').innerHTML = projects.map(renderWorkCard).join('');
-  document.getElementById('writing-track').innerHTML = posts.map(renderWritingCard).join('');
-  initScrollers();
+initScrollers();
 
-  /* CV */
-  document.getElementById('cv-prose').textContent = site.cv.prose;
-  document.getElementById('cv-last-updated').textContent = `Last updated: ${site.cv.lastUpdated}`;
-  document.getElementById('cv-glance-rows').innerHTML = site.cv.glance
-    .map(r => `<div class="cv-row"><span class="cv-row-key">${r.key}</span><span>${r.value}</span></div>`)
-    .join('');
-  const cvLink = document.getElementById('cv-dl-link');
-  if (site.resumeUrl) cvLink.href = site.resumeUrl;
-  else cvLink.style.display = 'none';
-
-  /* Email references */
-  document.getElementById('contact-email').textContent = site.email;
-  const footerEmail = document.getElementById('footer-email');
-  footerEmail.textContent = site.email;
-  footerEmail.href = `mailto:${site.email}`;
-
-  /* Contact form → mailto */
-  document.getElementById('contact-form').addEventListener('submit', e => {
-    e.preventDefault();
-    const d = Object.fromEntries(new FormData(e.target));
-    if (!d.name.trim() || !d.email.trim() || !d.message.trim()) return;
-    const subject = encodeURIComponent(`Message from ${d.name}`);
-    const body    = encodeURIComponent(`${d.message}\n\n---\nFrom: ${d.name}\nEmail: ${d.email}`);
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-  });
+/* ── Contact form → mailto ────────────────────────────────────────── */
+document.getElementById('contact-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(e.target));
+  if (!d.name.trim() || !d.email.trim() || !d.message.trim()) return;
+  const subject = encodeURIComponent(`Message from ${d.name}`);
+  const body    = encodeURIComponent(`${d.message}\n\n---\nFrom: ${d.name}\nEmail: ${d.email}`);
+  window.location.href = `mailto:{{ site.email }}?subject=${subject}&body=${body}`;
 });
 </script>
 </body>
