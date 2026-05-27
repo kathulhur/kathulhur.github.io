@@ -7,7 +7,7 @@
 <meta name="description" content="Software developer building small, careful software. Backend in Go and Python, frontend in TypeScript and React.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 /* ── Reset ────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
@@ -19,18 +19,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 a { color: inherit; }
-::selection { background: #1a1715; color: #f5f1ea; }
+::selection { background: #1a1715; color: #ffffff; }
 input, textarea, button { font: inherit; }
-h2, h3 { margin: 0; font-weight: 500; }
+h2, h3 { margin: 0; font-weight: 400; }
 p { margin: 0; }
 
 /* ── Design tokens ────────────────────────────────────────────────── */
 :root {
-  --bg:     #f5f1ea;
+  --bg:     #ffffff;
   --ink:    #1a1715;
   --body-c: #3a3530;
   --muted:  #7a6a5a;
-  --rule:   rgba(26,23,21,.125);
+  --rule:   rgba(0,0,0,.1);
   --accent: #c9a878;
   --serif:  "EB Garamond", "Iowan Old Style", Georgia, serif;
   --sans:   "Inter", system-ui, sans-serif;
@@ -142,7 +142,6 @@ p { margin: 0; }
   font-family: var(--serif);
   font-style: italic;
   font-size: 22px;
-  font-weight: 500;
   white-space: nowrap;
   color: var(--ink);
 }
@@ -172,7 +171,6 @@ p { margin: 0; }
   font-size: 56px;
   line-height: 1;
   letter-spacing: -1.5px;
-  font-weight: 500;
   margin: 14px 0 0;
   color: var(--ink);
 }
@@ -181,7 +179,6 @@ p { margin: 0; }
   line-height: 1.65;
   color: var(--body-c);
   max-width: 60ch;
-  font-weight: 400;
   margin-top: 22px;
 }
 
@@ -218,7 +215,7 @@ p { margin: 0; }
   line-height: 1;
 }
 .arrow-btn:disabled { opacity: .3; cursor: default; }
-.arrow-btn:not(:disabled):hover { background: rgba(26,23,21,.04); }
+.arrow-btn:not(:disabled):hover { background: rgba(0,0,0,.05); }
 
 .scroller-track {
   display: flex;
@@ -303,7 +300,6 @@ p { margin: 0; }
   line-height: 1.1;
   letter-spacing: -.5px;
   margin: 0 0 4px;
-  font-weight: 500;
   color: var(--ink);
 }
 .work-card-sub {
@@ -341,7 +337,6 @@ p { margin: 0; }
   line-height: 1.15;
   letter-spacing: -.4px;
   margin: 24px 0 10px;
-  font-weight: 500;
   color: var(--ink);
 }
 .writing-card-dek {
@@ -431,13 +426,13 @@ p { margin: 0; }
   font-weight: 500;
 }
 .contact-wrap {
-  border: 1px solid rgba(26,23,21,.15);
+  border: 1px solid rgba(0,0,0,.12);
   border-radius: 4px;
-  background: rgba(26,23,21,.04);
+  background: rgba(0,0,0,.03);
   transition: border-color .15s, background .15s;
 }
 .contact-wrap:focus-within {
-  border-color: rgba(26,23,21,.5);
+  border-color: rgba(0,0,0,.4);
   background: var(--bg);
 }
 .contact-field {
