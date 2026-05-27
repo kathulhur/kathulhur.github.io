@@ -1,0 +1,15 @@
+{
+  "email": "joseph.dev.ph@gmail.com",
+  "resumeUrl": "",
+  "cv": {
+    "prose": "A condensed document covering the last two years — roles, projects, languages, and a short list of references. Updated quarterly.",
+    "lastUpdated": "May 2026",
+    "glance": [
+      { "key": "Current",    "value": "Backend developer · independent" },
+      { "key": "Experience", "value": "2+ years building for the web" },
+      { "key": "Languages",  "value": "Python, Ruby, TypeScript, JavaScript" },
+      { "key": "Based in",   "value": "Manila · GMT+8" },
+      { "key": "Available",  "value": "Available for hire" }
+    ]
+  }
+}
