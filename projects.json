@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Kuryente Watch",
+    "subtitle": "A community-driven app that provides community-sourced information on the status of electricity for each of our town's Barangay.",
+    "year": "2025",
+    "stack": "Ruby · Ruby on Rails · Turbo · Stimulus",
+    "gradient": "linear-gradient(135deg,#c9a878 0%,#8a6a4a 100%)",
+    "href": "https://kuryentewatch.app/"
+  },
+  {
+    "title": "Manong Pabili",
+    "subtitle": "Mobile street vendors trades visibility to mobility. Manong Pabili aims to bring back visibility by providing a platform where customers can find where they are.",
+    "year": "2023",
+    "stack": "RedwoodJS · Typescript · ReactJS · Apollo GraphQL · Supabase",
+    "gradient": "linear-gradient(135deg,#4a5a4e 0%,#1c2a23 100%)",
+    "href": "https://www.linkedin.com/posts/joseph-crisostomo_redwoodjs-ugcPost-7113374491640004609-rVcU/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADdczxgBcHYigNZv76X-ah7leEeLHaMJRpI"
+  }
+]
