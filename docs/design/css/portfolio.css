@@ -1,0 +1,385 @@
+/* ============================================================
+   PORTFOLIO  —  page styles that APPLY the design system.
+   Grouping via space. Borders only as side lines / hairlines.
+   ============================================================ */
+
+/* ---- Skip link ------------------------------------------- */
+.skip-link {
+  position: absolute; left: var(--space-4); top: var(--space-4);
+  transform: translateY(-150%);
+  background: var(--ink); color: var(--bg);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm); z-index: 100;
+  transition: transform var(--dur) var(--ease);
+}
+.skip-link:focus { transform: translateY(0); color: var(--bg); }
+
+/* ============================================================
+   HEADER / NAV  — no chrome, just space. Hairline appears
+   only once the page scrolls (structural, not decorative).
+   ============================================================ */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(1.2) blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.site-header[data-scrolled="true"] { border-bottom-color: var(--line); }
+
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-5);
+  padding-block: var(--space-4);
+}
+.brand {
+  display: inline-flex; align-items: baseline; gap: 0.15em;
+  font-weight: var(--weight-bold); font-size: 1.05rem;
+  letter-spacing: var(--tracking-tight); color: var(--ink);
+}
+.brand:hover { color: var(--ink); text-decoration: none; }
+.brand .dot { color: var(--identity); }
+
+.nav-links {
+  display: flex; align-items: center; gap: var(--space-6);
+  font-size: var(--step-sm);
+}
+.nav-links a { color: var(--ink-muted); font-weight: var(--weight-medium); }
+.nav-links a:hover { color: var(--ink); text-decoration: none; }
+
+.nav-right { display: flex; align-items: center; gap: var(--space-4); }
+
+/* Theme toggle — a quiet icon button, no border */
+.theme-toggle {
+  display: inline-grid; place-items: center;
+  width: 2.25rem; height: 2.25rem;
+  background: transparent; border: 0; cursor: pointer;
+  color: var(--ink-muted); border-radius: var(--radius-sm);
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.theme-toggle:hover { color: var(--ink); background: var(--surface); }
+.theme-toggle .moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .sun,
+:root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
+}
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+}
+
+/* ============================================================
+   HERO — bold, editorial. Big type does the work; the identity
+   color touches exactly one keyword.
+   ============================================================ */
+.hero {
+  padding-block: clamp(2.5rem, 1.5rem + 6vw, 5rem) var(--section-gap);
+}
+.status {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--step-sm); color: var(--ink-muted);
+  margin-bottom: var(--space-6);
+}
+.status .pulse {
+  width: 0.55rem; height: 0.55rem; border-radius: 50%;
+  background: var(--positive);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--positive) 60%, transparent);
+  animation: pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--positive) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 0.5rem color-mix(in srgb, var(--positive) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.hero h1 {
+  font-size: var(--step-display);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+.hero h1 .accent { color: var(--identity); }
+.hero-lead {
+  margin-top: var(--space-5);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  color: var(--ink-muted); max-width: 48ch;
+}
+.hero-actions {
+  margin-top: var(--space-7);
+  display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center;
+}
+
+/* Buttons — solid identity primary, quiet ghost secondary (no border box;
+   the ghost uses an underline affordance instead of a heavy outline). */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--step-sm); font-weight: var(--weight-semibold);
+  padding: 0.7rem 1.15rem; border-radius: var(--radius-pill);
+  border: 0; cursor: pointer; transition: all var(--dur) var(--ease);
+}
+.btn-primary { background: var(--identity); color: var(--on-identity); }
+.btn-primary:hover {
+  background: var(--identity-strong); color: var(--on-identity);
+  text-decoration: none; transform: translateY(-1px);
+}
+.btn-ghost { color: var(--ink); padding-inline: 0.25rem; }
+.btn-ghost:hover { color: var(--identity); text-decoration: none; }
+.btn-ghost .arrow { transition: transform var(--dur) var(--ease); }
+.btn-ghost:hover .arrow { transform: translateX(3px); }
+
+/* ============================================================
+   SECTION scaffolding — rhythm between sections is the spacing.
+   ============================================================ */
+.section { padding-block: var(--section-gap); }
+.section-head { margin-bottom: var(--space-7); }
+.section-head h2 { margin-top: var(--space-4); max-width: 20ch; }
+.section-head .sub {
+  margin-top: var(--space-3); color: var(--ink-muted); max-width: 52ch;
+}
+
+/* ============================================================
+   WORK — a horizontal, editorial scroll gallery. NO boxes.
+   Slides are separated by space and a single vertical hairline
+   (the sanctioned side-line idiom). The "accent" is typographic,
+   not chromatic: a large ghosted index numeral, plus an underline
+   that DRAWS under the title on hover. Edges fade via a mask so
+   slides dissolve instead of hitting a hard cut.
+   ============================================================ */
+.work-scroller { position: relative; }
+
+/* Control row — hint + prev/next. Buttons are pills, not boxes. */
+.work-controls {
+  display: flex; align-items: center; gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.work-hint {
+  margin-right: auto;
+  font-size: var(--step-label); letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.scroll-btn {
+  display: inline-grid; place-items: center;
+  width: 2.5rem; height: 2.5rem; border-radius: var(--radius-pill);
+  background: var(--surface); color: var(--ink); border: 0; cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              opacity var(--dur) var(--ease);
+}
+.scroll-btn:hover { background: var(--surface-2); color: var(--identity); }
+.scroll-btn[disabled] { opacity: 0.3; cursor: default; }
+.scroll-btn:hover[disabled] { background: var(--surface); color: var(--ink); }
+
+/* The track — full-bleed to the viewport edges so slides can scroll
+   off-canvas; snap + smooth; native scrollbar hidden. */
+.work-track {
+  display: flex; gap: 0;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* Edge fade via a variable mask: a side only fades once there is
+     content hidden past it (toggled by JS). Keeps the first slide
+     un-clipped at rest and the last slide fully readable at the end. */
+  --edge: 3.5%; --fade-l: #000; --fade-r: #000;
+  -webkit-mask-image: linear-gradient(90deg, var(--fade-l) 0, #000 var(--edge), #000 calc(100% - var(--edge)), var(--fade-r) 100%);
+          mask-image: linear-gradient(90deg, var(--fade-l) 0, #000 var(--edge), #000 calc(100% - var(--edge)), var(--fade-r) 100%);
+}
+.work-track[data-at-start="false"] { --fade-l: transparent; }
+.work-track[data-at-end="false"]   { --fade-r: transparent; }
+.work-track::-webkit-scrollbar { display: none; }
+
+.work-slide {
+  flex: 0 0 min(88vw, 30rem);
+  scroll-snap-align: start;
+  position: relative;
+  display: grid; align-content: start; gap: var(--space-4);
+  padding: var(--space-1) var(--space-7);
+  border-left: 1px solid var(--line);      /* the one intentional divider */
+}
+.work-slide:first-child { border-left: 0; padding-left: 0; }
+.work-slide.is-featured { flex-basis: min(92vw, 42rem); }
+
+/* Large ghosted index numeral — the primary, colorless accent. */
+.work-index {
+  font-size: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+  font-weight: var(--weight-bold); line-height: 0.9;
+  letter-spacing: -0.04em; color: var(--ink);
+  opacity: 0.1; font-variant-numeric: tabular-nums;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+.work-slide:hover .work-index,
+.work-slide:focus-within .work-index { opacity: 0.22; }
+
+.work-body { display: grid; align-content: start; gap: var(--space-3); }
+.work-meta {
+  font-size: var(--step-label); font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.work-slide h3 {
+  font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+  letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);
+}
+/* Title stays ink; an indigo rule DRAWS beneath it on hover/focus. */
+.work-slide h3 a { color: var(--ink); position: relative; }
+.work-slide h3 a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -0.28em;
+  height: 2px; background: var(--identity);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease);
+}
+.work-slide:hover h3 a::after,
+.work-slide h3 a:focus-visible::after { transform: scaleX(1); }
+.work-slide h3 a:hover { color: var(--ink); text-decoration: none; }
+
+.work-slide p { color: var(--ink-muted); }
+.work-slide .tags {
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3);
+  font-size: var(--step-label); color: var(--ink-faint);
+}
+.work-slide .tags li::before { content: "·"; margin-right: var(--space-3); color: var(--line-strong); }
+.work-slide .tags li:first-child::before { content: none; }
+.project-link {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--step-sm); font-weight: var(--weight-semibold);
+  color: var(--ink); margin-top: var(--space-1);
+}
+.project-link .arrow { transition: transform var(--dur) var(--ease); }
+.work-slide:hover .project-link { color: var(--identity); }
+.work-slide:hover .project-link .arrow { transform: translate(2px, -2px); }
+/* Whole slide is clickable via the title's stretched link. */
+.stretched::after { content: ""; position: absolute; inset: 0; }
+
+/* Abstract preview for the featured slide — bounded height so the
+   scroller never grows tall; not a screenshot, so it never distracts. */
+.project-visual {
+  height: clamp(9rem, 18vw, 13rem); border-radius: var(--radius);
+  background:
+    radial-gradient(120% 120% at 15% 15%, color-mix(in srgb, var(--identity) 20%, transparent), transparent 55%),
+    var(--surface);
+  display: grid; place-items: center; overflow: hidden;
+}
+
+/* ============================================================
+   CERTIFICATES — capped-height, internally scrolling.
+   The region has a fixed max-height; adding more items scrolls
+   INSIDE it (masked top & bottom) instead of pushing page height.
+   Two columns to spend horizontal space and save vertical. Rows
+   read as a list — divided by a hairline, never boxed.
+   ============================================================ */
+.certs-shell { position: relative; }
+.certs-scroll {
+  max-height: clamp(15rem, 42vh, 21rem);
+  overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent 100%);
+  padding-block: var(--space-3);
+}
+.certs-list {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--space-8);
+}
+@media (max-width: 620px) { .certs-list { grid-template-columns: 1fr; } }
+.cert {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.cert .c-main { display: grid; gap: 2px; min-width: 0; }
+.cert .c-name { font-weight: var(--weight-semibold); color: var(--ink); }
+a.c-name:hover { color: var(--identity); text-decoration: none; }
+.cert .c-issuer { font-size: var(--step-sm); color: var(--ink-muted); }
+.cert .c-year {
+  font-size: var(--step-label); letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.certs-note {
+  margin-top: var(--space-4); font-size: var(--step-sm); color: var(--ink-faint);
+}
+
+/* ============================================================
+   EXPERIENCE — the textbook "line on the side" case.
+   A single left hairline threads the timeline; nodes sit on it.
+   ============================================================ */
+.timeline {
+  display: grid; gap: var(--space-7);
+  padding-left: var(--space-6);
+  border-left: 1px solid var(--line-strong);   /* intentional side line */
+}
+.timeline-item { position: relative; display: grid; gap: var(--space-2); }
+.timeline-item::before {
+  content: ""; position: absolute;
+  left: calc(-1 * var(--space-6) - 4.5px); top: 0.55rem;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 0 0 0 2px var(--identity);
+}
+.timeline-item .when {
+  font-size: var(--step-label); font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label); color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.timeline-item h3 { font-size: 1.15rem; }
+.timeline-item .role-org { color: var(--ink-muted); }
+.timeline-item p { color: var(--ink-muted); font-size: var(--step-sm); }
+
+/* ============================================================
+   STACK — grouped purely by space + a short eyebrow per group.
+   No cards, no boxes.
+   ============================================================ */
+.stack-groups {
+  display: grid; gap: var(--space-7);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+.stack-group h3 {
+  font-size: var(--step-label); letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--ink-muted);
+  font-weight: var(--weight-semibold); margin-bottom: var(--space-4);
+}
+.stack-group ul { display: grid; gap: var(--space-2); }
+.stack-group li { color: var(--ink); font-size: var(--step-sm); }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid {
+  display: grid; gap: var(--space-8);
+  grid-template-columns: 1fr;
+}
+.about p + p { margin-top: var(--space-4); }
+.about p { color: var(--ink-muted); }
+.about strong { color: var(--ink); font-weight: var(--weight-semibold); }
+
+/* ============================================================
+   CONTACT / FOOTER — big editorial closer.
+   ============================================================ */
+.contact { padding-block: var(--section-gap); }
+.contact .big-mail {
+  display: inline-block; margin-top: var(--space-5);
+  font-size: clamp(1.6rem, 1rem + 3.5vw, 3rem);
+  font-weight: var(--weight-bold); letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.contact .big-mail:hover { color: var(--identity); text-decoration: none; }
+
+.site-footer {
+  border-top: 1px solid var(--line);   /* one honest structural divider */
+  margin-top: var(--section-gap);
+}
+.footer-row {
+  display: flex; flex-wrap: wrap; gap: var(--space-4);
+  align-items: center; justify-content: space-between;
+  padding-block: var(--space-6);
+  font-size: var(--step-sm); color: var(--ink-faint);
+}
+.footer-links { display: flex; gap: var(--space-5); }
+.footer-links a { color: var(--ink-muted); }
+.footer-links a:hover { color: var(--ink); text-decoration: none; }
+
+/* ---- Entrance animation (subtle, respects reduced-motion) - */
+.reveal { opacity: 0; transform: translateY(12px); }
+.reveal.in { opacity: 1; transform: none; transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }

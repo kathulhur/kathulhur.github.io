@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System — Joseph's Portfolio</title>
+  <meta name="description" content="The design system: principles, tokens, type, color, spacing, and components." />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t) document.documentElement.setAttribute("data-theme", t);
+        else document.documentElement.removeAttribute("data-theme");
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/portfolio.css" />
+  <link rel="stylesheet" href="css/docs.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Joseph<span class="dot">.</span></a>
+      <div class="nav-right">
+        <a class="doc-back nav-links" style="display:inline-flex" href="index.html">← Back to portfolio</a>
+        <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle color theme" aria-pressed="false">
+          <svg class="sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+          <svg class="moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="doc-header">
+      <p class="eyebrow">Design system · v0.1</p>
+      <h1>The rules that keep this portfolio calm, readable, and unmistakably mine.</h1>
+      <p>A living reference for the visual language. Change a value in <code>tokens.css</code>
+         and it ripples everywhere — this page and the portfolio both consume the same tokens.</p>
+    </div>
+
+    <!-- PRINCIPLES -->
+    <section class="doc-section">
+      <h2>Principles</h2>
+      <p class="lead">Five commitments the whole system is built to honor.</p>
+      <div class="principles">
+        <div class="principle"><h3>Space groups things</h3><p>Related elements are bound by proximity and rhythm — not by drawing a box around them. Whitespace is the primary layout tool.</p></div>
+        <div class="principle"><h3>Borders are intentional</h3><p>No border is used to "just emphasize." When a cue is needed, prefer a short line on one side over a full enclosure.</p></div>
+        <div class="principle"><h3>One identity color</h3><p>Indigo carries the brand. It appears on links, focus, one hero keyword, and the featured work — never as background noise.</p></div>
+        <div class="principle"><h3>One typeface</h3><p>Inter throughout. Hierarchy comes from size, weight, and space — not from mixing families.</p></div>
+        <div class="principle"><h3>Personality, not decoration</h3><p>The projects highlight is the moment of flair. Everywhere else stays composed so it never competes.</p></div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section class="doc-section">
+      <h2>Color</h2>
+      <p class="lead">A neutral ink-on-paper base with a single indigo identity. Accents are functional and rare. Toggle the theme (top right) to see both modes.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:var(--bg)"></div><span class="name">Background</span><span class="val">--bg</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface)"></div><span class="name">Surface</span><span class="val">--surface · grouping tint</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--ink)"></div><span class="name">Ink</span><span class="val">--ink · primary text</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--ink-muted)"></div><span class="name">Ink muted</span><span class="val">--ink-muted</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--identity)"></div><span class="name">Identity</span><span class="val">--identity · indigo</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--identity-strong)"></div><span class="name">Identity strong</span><span class="val">--identity-strong · hover</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--line)"></div><span class="name">Line</span><span class="val">--line · hairline</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--accent-warm)"></div><span class="name">Accent (rare)</span><span class="val">--accent-warm</span></div>
+        <div class="swatch"><div class="chip" style="background:var(--positive)"></div><span class="name">Positive</span><span class="val">--positive · status</span></div>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section class="doc-section">
+      <h2>Type</h2>
+      <p class="lead">Inter, one face. Bold & editorial: large, tight display headings; comfortable 17px body.</p>
+      <div class="type-scale">
+        <div class="type-row"><span class="meta">Display · 700 · clamp → 5.5rem</span><span style="font-size:var(--step-display); font-weight:700; letter-spacing:-0.03em; line-height:1.05">Build reliable things</span></div>
+        <div class="type-row"><span class="meta">H1 · 700</span><span style="font-size:var(--step-h1); font-weight:700; letter-spacing:-0.02em">Section heading</span></div>
+        <div class="type-row"><span class="meta">H2 · 700</span><span style="font-size:var(--step-h2); font-weight:700; letter-spacing:-0.02em">Subsection heading</span></div>
+        <div class="type-row"><span class="meta">H3 · 600</span><span style="font-size:var(--step-h3); font-weight:600">Smaller heading</span></div>
+        <div class="type-row"><span class="meta">Body · 400 · 17px</span><span style="font-size:var(--step-body); max-width:var(--measure)">The quick brown fox jumps over the lazy dog. Readable body copy sits at a comfortable measure of roughly 68 characters.</span></div>
+        <div class="type-row"><span class="meta">Small · 400 · 15px</span><span style="font-size:var(--step-sm); color:var(--ink-muted)">Secondary and supporting text.</span></div>
+        <div class="type-row"><span class="meta">Label · 600 · uppercase · tracked</span><span class="eyebrow" style="margin-top:2px">Eyebrow label</span></div>
+      </div>
+    </section>
+
+    <!-- SPACING -->
+    <section class="doc-section">
+      <h2>Spacing</h2>
+      <p class="lead">A 4px-based scale. This is the primary grouping mechanism — the load-bearing part of the system.</p>
+      <div class="space-scale">
+        <div class="space-row"><span class="tok">--space-1</span><span class="bar" style="width:0.25rem"></span><span>4px</span></div>
+        <div class="space-row"><span class="tok">--space-2</span><span class="bar" style="width:0.5rem"></span><span>8px</span></div>
+        <div class="space-row"><span class="tok">--space-3</span><span class="bar" style="width:0.75rem"></span><span>12px</span></div>
+        <div class="space-row"><span class="tok">--space-4</span><span class="bar" style="width:1rem"></span><span>16px</span></div>
+        <div class="space-row"><span class="tok">--space-5</span><span class="bar" style="width:1.5rem"></span><span>24px</span></div>
+        <div class="space-row"><span class="tok">--space-6</span><span class="bar" style="width:2rem"></span><span>32px</span></div>
+        <div class="space-row"><span class="tok">--space-7</span><span class="bar" style="width:3rem"></span><span>48px</span></div>
+        <div class="space-row"><span class="tok">--space-8</span><span class="bar" style="width:4rem"></span><span>64px</span></div>
+        <div class="space-row"><span class="tok">--space-9</span><span class="bar" style="width:6rem"></span><span>96px</span></div>
+        <div class="space-row"><span class="tok">--space-10</span><span class="bar" style="width:8rem"></span><span>128px</span></div>
+      </div>
+    </section>
+
+    <!-- BORDERS -->
+    <section class="doc-section">
+      <h2>Borders — the intentional-only rule</h2>
+      <p class="lead">Borders never do the job that space should. When emphasis is genuinely needed, a side line beats a box.</p>
+      <div class="rules">
+        <div class="rule do">
+          <span class="tag">Do</span>
+          <p>Use a short line on one side to mark a relationship — timeline threads, section eyebrows, quote emphasis.</p>
+          <div class="demo-box good">A side line points without enclosing.</div>
+        </div>
+        <div class="rule dont">
+          <span class="tag">Don't</span>
+          <p>Wrap an element in a full border just to make it "stand out." That's a lazy box — use surface tint or space instead.</p>
+          <div class="demo-box bad">A full box shouting for attention.</div>
+        </div>
+        <div class="rule do">
+          <span class="tag">Do</span>
+          <p>Use one honest hairline as a structural divider (e.g. footer top, doc section breaks) where a real boundary exists.</p>
+          <div class="demo-box" style="border-top:1px solid var(--line); border-radius:0; background:transparent; padding-top:var(--space-4)">Content below a genuine divider.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="doc-section">
+      <h2>Components</h2>
+      <p class="lead">Built from the tokens above. Borderless by default — grouped by surface and space.</p>
+      <div class="demo-grid">
+        <div>
+          <p class="demo-label">Buttons</p>
+          <div class="btn-row">
+            <button class="btn btn-primary">Primary action</button>
+            <a class="btn btn-ghost" href="#">Ghost action <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div>
+          <p class="demo-label">Status</p>
+          <p class="status"><span class="pulse" aria-hidden="true"></span> Available for new work</p>
+        </div>
+        <div>
+          <p class="demo-label">Work slide (no box — space + a side hairline + a ghosted index)</p>
+          <div style="display:flex; max-width:24rem">
+            <article class="work-slide" style="flex:0 0 100%">
+              <p class="work-index" aria-hidden="true">02</p>
+              <div class="work-body">
+                <h3><a href="#">Sample project</a></h3>
+                <p>Short description that explains the what and the why in a sentence or two.</p>
+                <ul class="tags"><li>TypeScript</li><li>Postgres</li><li>Docker</li></ul>
+                <span class="project-link">View project <span class="arrow" aria-hidden="true">↗</span></span>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div>
+          <p class="demo-label">Capped-height scroll region (certificates pattern)</p>
+          <p style="font-size:var(--step-sm); color:var(--ink-muted); max-width:var(--measure)">
+            A fixed <code>max-height</code> + <code>overflow-y:auto</code> with a top/bottom mask fade.
+            Content extends <em>inside</em> the panel; the page height never moves.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" style="margin-top:var(--space-8)">
+      <div class="footer-row" style="padding-inline:0">
+        <p>Design system v0.1 · tokens live in <code>css/tokens.css</code></p>
+        <nav class="footer-links"><a href="index.html">Portfolio</a></nav>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

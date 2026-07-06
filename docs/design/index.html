@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joseph — Full-stack Developer</title>
+  <meta name="description" content="Portfolio of Joseph, a full-stack developer building reliable, thoughtful web applications." />
+
+  <!-- Set theme before paint to avoid a flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t) document.documentElement.setAttribute("data-theme", t);
+        else document.documentElement.removeAttribute("data-theme");
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Single typeface: Inter. Falls back to system-ui offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/portfolio.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Joseph<span class="dot">.</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#experience">Experience</a>
+        <a href="#stack">Stack</a>
+        <a href="#about">About</a>
+      </nav>
+      <div class="nav-right">
+        <a class="nav-contact nav-links" href="#contact" style="display:inline-flex">Contact</a>
+        <button class="theme-toggle" data-theme-toggle type="button"
+                aria-label="Toggle color theme" aria-pressed="false">
+          <svg class="sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+          <svg class="moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <span id="top"></span>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container">
+        <p class="status"><span class="pulse" aria-hidden="true"></span> Available for new work</p>
+        <h1>Full-stack developer building <span class="accent">reliable</span> web products.</h1>
+        <p class="hero-lead">
+          I'm Joseph — I design and ship end-to-end applications, from the data model
+          up to the last pixel. I care about clarity, performance, and code that ages well.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">See selected work</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK (the highlight) ============ -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2>A few things I've designed, built, and shipped.</h2>
+          <p class="sub">Each project below is something I owned end-to-end — problem framing, architecture, and delivery.</p>
+        </div>
+
+        <div class="work-scroller reveal">
+          <div class="work-controls">
+            <span class="work-hint">Scroll to explore →</span>
+            <button class="scroll-btn" type="button" data-scroll="prev" aria-label="Previous projects" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="scroll-btn" type="button" data-scroll="next" aria-label="More projects">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+
+          <div class="work-track" tabindex="0" role="region" aria-label="Selected projects — horizontally scrollable">
+            <!-- Featured -->
+            <article class="work-slide is-featured">
+              <p class="work-index" aria-hidden="true">01</p>
+              <div class="project-visual" aria-hidden="true">
+                <svg width="86%" viewBox="0 0 320 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="16" y="16" width="288" height="30" rx="7" fill="var(--surface-2)"/>
+                  <rect x="28" y="27" width="110" height="10" rx="5" fill="var(--identity)" opacity="0.9"/>
+                  <rect x="16" y="58" width="138" height="96" rx="9" fill="var(--surface-2)"/>
+                  <rect x="166" y="58" width="138" height="96" rx="9" fill="var(--surface-2)"/>
+                  <rect x="28" y="72" width="64" height="9" rx="4" fill="var(--ink-faint)" opacity="0.5"/>
+                  <rect x="28" y="92" width="100" height="7" rx="3" fill="var(--ink-faint)" opacity="0.3"/>
+                  <rect x="28" y="126" width="48" height="18" rx="9" fill="var(--identity)" opacity="0.85"/>
+                  <rect x="178" y="72" width="64" height="9" rx="4" fill="var(--ink-faint)" opacity="0.5"/>
+                  <rect x="178" y="92" width="100" height="7" rx="3" fill="var(--ink-faint)" opacity="0.3"/>
+                </svg>
+              </div>
+              <div class="work-body">
+                <p class="work-meta">Featured project</p>
+                <h3><a class="stretched" href="#">GetHired</a></h3>
+                <p>A job-application tracker that turns a messy search into a clean pipeline —
+                   saved listings, status stages, reminders, and a browser extension that
+                   captures postings in one click.</p>
+                <ul class="tags"><li>Ruby on Rails</li><li>PostgreSQL</li><li>Extension</li><li>Docker</li></ul>
+                <span class="project-link">View case study <span class="arrow" aria-hidden="true">↗</span></span>
+              </div>
+            </article>
+
+            <article class="work-slide">
+              <p class="work-index" aria-hidden="true">02</p>
+              <div class="work-body">
+                <h3><a class="stretched" href="#">Lakad</a></h3>
+                <p>A route-and-commute companion that helps people plan trips across local
+                   transit — built around real-world stops, fares, and legs.</p>
+                <ul class="tags"><li>TypeScript</li><li>Maps API</li><li>PWA</li></ul>
+                <span class="project-link">View project <span class="arrow" aria-hidden="true">↗</span></span>
+              </div>
+            </article>
+
+            <article class="work-slide">
+              <p class="work-index" aria-hidden="true">03</p>
+              <div class="work-body">
+                <h3><a class="stretched" href="#">Design System Kit</a></h3>
+                <p>A token-driven component library with theming baked in — the same
+                   foundation this very portfolio is built on.</p>
+                <ul class="tags"><li>CSS Architecture</li><li>Design tokens</li><li>a11y</li></ul>
+                <span class="project-link">View project <span class="arrow" aria-hidden="true">↗</span></span>
+              </div>
+            </article>
+
+            <article class="work-slide">
+              <p class="work-index" aria-hidden="true">04</p>
+              <div class="work-body">
+                <h3><a class="stretched" href="#">Ledgerly</a></h3>
+                <p>A double-entry personal finance ledger with import pipelines, rules,
+                   and reports — built to make money honest and legible.</p>
+                <ul class="tags"><li>Python</li><li>SQLite</li><li>CLI + Web</li></ul>
+                <span class="project-link">View project <span class="arrow" aria-hidden="true">↗</span></span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATES ============ -->
+    <section class="section" id="certificates">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Certifications</p>
+          <h2>Credentials, kept compact.</h2>
+          <p class="sub">A capped, scrollable list — it holds many certificates inside a fixed height instead of running away down the page.</p>
+        </div>
+
+        <div class="certs-shell reveal">
+          <div class="certs-scroll" tabindex="0" role="region" aria-label="Certifications — scrollable list">
+            <ul class="certs-list">
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Solutions Architect – Associate</a><span class="c-issuer">Amazon Web Services</span></div><span class="c-year">2025</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Professional Cloud Developer</a><span class="c-issuer">Google Cloud</span></div><span class="c-year">2025</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Certified Kubernetes App Developer</a><span class="c-issuer">CNCF · CKAD</span></div><span class="c-year">2024</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Meta Front-End Developer</a><span class="c-issuer">Meta · Coursera</span></div><span class="c-year">2024</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">MongoDB Associate Developer</a><span class="c-issuer">MongoDB University</span></div><span class="c-year">2024</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Docker Certified Associate</a><span class="c-issuer">Docker · KodeKloud</span></div><span class="c-year">2023</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">TypeScript Fundamentals</a><span class="c-issuer">Microsoft Learn</span></div><span class="c-year">2023</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Responsive Web Design</a><span class="c-issuer">freeCodeCamp</span></div><span class="c-year">2022</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Problem Solving (Intermediate)</a><span class="c-issuer">HackerRank</span></div><span class="c-year">2022</span></li>
+              <li class="cert"><div class="c-main"><a class="c-name" href="#">Scrimba Advanced React</a><span class="c-issuer">Scrimba</span></div><span class="c-year">2022</span></li>
+            </ul>
+          </div>
+          <p class="certs-note">10 certifications · scroll within the panel to see them all.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Experience</p>
+          <h2>Where I've spent my time.</h2>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline-item">
+            <p class="when">2024 — Present</p>
+            <h3>Full-stack Developer</h3>
+            <p class="role-org">Independent · Building products end-to-end</p>
+            <p>Shipping web applications from concept to production — owning architecture,
+               implementation, and the details that make software feel considered.</p>
+          </div>
+          <div class="timeline-item">
+            <p class="when">2022 — 2024</p>
+            <h3>Software Engineer</h3>
+            <p class="role-org">Company Name · Product team</p>
+            <p>Worked across the stack on customer-facing features, focusing on reliability
+               and developer experience.</p>
+          </div>
+          <div class="timeline-item">
+            <p class="when">2021</p>
+            <h3>Started building for the web</h3>
+            <p class="role-org">Self-taught → first shipped projects</p>
+            <p>Fell for the craft of turning ideas into working, useful software.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Toolkit</p>
+          <h2>The tools I reach for.</h2>
+        </div>
+        <div class="stack-groups reveal">
+          <div class="stack-group">
+            <h3>Languages</h3>
+            <ul><li>TypeScript / JavaScript</li><li>Ruby</li><li>Python</li><li>SQL</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>Frameworks</h3>
+            <ul><li>Rails</li><li>React</li><li>Node</li><li>Next.js</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>Data</h3>
+            <ul><li>PostgreSQL</li><li>Redis</li><li>SQLite</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>Platform</h3>
+            <ul><li>Docker</li><li>Linux</li><li>CI/CD</li><li>AWS</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">About</p>
+        </div>
+        <div class="about reveal">
+          <p style="font-size:var(--step-h3); color:var(--ink); max-width:var(--measure);">
+            I build software the way I'd want to use it — <strong>clear, fast, and honest</strong>
+            about its edges.
+          </p>
+          <p style="margin-top:var(--space-6)">
+            My work sits at the intersection of engineering and design. I like problems that
+            need both a solid data model and a considered interface, and I care as much about
+            the quiet details — empty states, loading, error copy — as the headline features.
+          </p>
+          <p>
+            When I'm not building, I'm usually reading about systems design, refining my own
+            tools, or exploring on foot.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <p class="eyebrow reveal">Contact</p>
+        <div class="reveal">
+          <h2 style="max-width:16ch; margin-top:var(--space-4)">Have something to build? Let's talk.</h2>
+          <a class="big-mail" href="mailto:joseph.dev.ph@gmail.com">joseph.dev.ph@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2026 Joseph. Built with care.</p>
+      <nav class="footer-links" aria-label="Social">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="design-system.html">Design system</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
