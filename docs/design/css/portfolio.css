@@ -205,6 +205,8 @@
   font-weight: var(--weight-bold); line-height: 0.9;
   letter-spacing: -0.04em; color: var(--ink);
   opacity: 0.1; font-variant-numeric: tabular-nums;
+  margin-bottom: var(--space-4);   /* separate the numeral from the title so
+                                      the hover underline reads as the title's */
   transition: opacity var(--dur-slow) var(--ease);
 }
 .work-slide:hover .work-index,
@@ -223,7 +225,7 @@
 /* Title stays ink; an indigo rule DRAWS beneath it on hover/focus. */
 .work-slide h3 a { color: var(--ink); position: relative; }
 .work-slide h3 a::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -0.28em;
+  content: ""; position: absolute; left: 0; right: 0; bottom: -0.14em;
   height: 2px; background: var(--identity);
   transform: scaleX(0); transform-origin: left;
   transition: transform var(--dur-slow) var(--ease);
@@ -247,8 +249,10 @@
 .project-link .arrow { transition: transform var(--dur) var(--ease); }
 .work-slide:hover .project-link { color: var(--identity); }
 .work-slide:hover .project-link .arrow { transform: translate(2px, -2px); }
-/* Whole slide is clickable via the title's stretched link. */
-.stretched::after { content: ""; position: absolute; inset: 0; }
+/* Whole slide is clickable via the title's stretched link. Uses ::before so it
+   doesn't collide with the title's underline ::after (which would inherit
+   inset:0's top and get pinned to the top of the title). */
+.stretched::before { content: ""; position: absolute; inset: 0; }
 
 /* Abstract preview for the featured slide — bounded height so the
    scroller never grows tall; not a screenshot, so it never distracts. */
