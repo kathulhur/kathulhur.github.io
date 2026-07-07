@@ -140,20 +140,31 @@ description: Portfolio of Joseph Karl, a full-stack developer who designs and sh
       </div>
 
       <div class="certs-shell reveal">
+        <nav class="certs-tabs" aria-label="Jump to certificate category">
+          {% for group in certificates.groups %}
+          <button class="cert-tab" type="button" data-cert-tab="cert-group-{{ group.label | slug }}"{% if loop.first %} aria-current="true"{% endif %}>
+            {{ group.label }} <span class="ct-count">{{ group.items | length }}</span>
+          </button>
+          {% endfor %}
+        </nav>
         <div class="certs-scroll" tabindex="0" role="region" aria-label="Certifications — scrollable list">
-          <ul class="certs-list">
-            {% for cert in certificates %}
-            <li class="cert">
-              <div class="c-main">
-                <a class="c-name" href="{{ cert.file | url }}" target="_blank" rel="noopener" title="{{ cert.name }} · {{ cert.issuer }} · {{ cert.date }}">{{ cert.name }}</a>
-                <span class="c-issuer">{{ cert.issuer }}</span>
-              </div>
-              <span class="c-year">{{ cert.year }}</span>
-            </li>
-            {% endfor %}
-          </ul>
+          {% for group in certificates.groups %}
+          <section class="cert-group" id="cert-group-{{ group.label | slug }}" aria-label="{{ group.label }} certifications">
+            <ul class="certs-list">
+              {% for cert in group.items %}
+              <li class="cert">
+                <div class="c-main">
+                  <a class="c-name" href="{{ cert.file | url }}" target="_blank" rel="noopener" title="{{ cert.name }} · {{ cert.issuer }} · {{ cert.date }}">{{ cert.name }}</a>
+                  <span class="c-issuer">{{ cert.issuer }}</span>
+                </div>
+                <span class="c-year">{{ cert.year }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% endfor %}
         </div>
-        <p class="certs-note">{{ certificates | length }} certifications · scroll within the panel to see them all.</p>
+        <p class="certs-note">{{ certificates.total }} certifications across {{ certificates.groups | length }} track{% if certificates.groups | length != 1 %}s{% endif %} · scroll within the panel to see them all.</p>
       </div>
     </div>
   </section>

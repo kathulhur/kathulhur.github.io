@@ -397,14 +397,50 @@
    read as a list — divided by a hairline, never boxed.
    ============================================================ */
 .certs-shell { position: relative; }
+
+/* Category tabs — a scrollspy rail above the panel. They advertise the
+   groups (so the scroll is obviously there) and jump you to one on click;
+   the active tab tracks whichever group you've scrolled to. */
+.certs-tabs {
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.cert-tab {
+  appearance: none; background: none; border: 0; cursor: pointer;
+  font: inherit; font-size: var(--step-sm); color: var(--ink-faint);
+  display: inline-flex; align-items: baseline; gap: 0.4em;
+  padding: var(--space-2) var(--space-1);
+  margin-bottom: -1px;                       /* sit the underline on the rail */
+  border-bottom: 2px solid transparent;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.cert-tab:hover { color: var(--ink-muted); }
+.cert-tab .ct-count {
+  font-size: var(--step-label); color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.cert-tab[aria-current="true"] {
+  color: var(--ink); border-bottom-color: var(--identity);
+}
+.cert-tab[aria-current="true"] .ct-count { color: var(--identity); }
+.cert-tab:focus-visible { outline: 2px solid var(--identity); outline-offset: 2px; border-radius: 3px; }
+
 .certs-scroll {
   max-height: clamp(15rem, 42vh, 21rem);
   overflow-y: auto; overscroll-behavior: contain;
+  scroll-behavior: smooth;
   scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent 100%);
-          mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 90%, transparent 100%);
+  /* Fade only the bottom edge — it hints "more below" while the pinned
+     group headers up top stay crisp and legible. */
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 88%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 0, #000 88%, transparent 100%);
   padding-block: var(--space-3);
 }
+@media (prefers-reduced-motion: reduce) { .certs-scroll { scroll-behavior: auto; } }
+/* Groups are separated by whitespace alone — the tab rail above already
+   names the track you're in, so no in-panel label is needed. */
+.cert-group + .cert-group { margin-top: var(--space-7); }
 .certs-list {
   display: grid; grid-template-columns: repeat(2, 1fr);
   column-gap: var(--space-8);

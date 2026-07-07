@@ -150,6 +150,67 @@
     window.addEventListener("resize", updateActive);
   }
 
+  /* ---- Certificate category tabs (scrollspy) --------------
+     The panel scrolls internally; the tab rail makes that obvious and
+     doubles as navigation. Clicking a tab scrolls its group to the top of
+     the panel; free-scrolling highlights whichever group you've reached. */
+  var certScroll = document.querySelector(".certs-scroll");
+  var certTabs = Array.prototype.slice.call(document.querySelectorAll(".cert-tab"));
+  if (certScroll && certTabs.length) {
+    // Pair each tab with its target group, keeping only pairs that resolve.
+    var certPairs = certTabs.map(function (tab) {
+      return { tab: tab, group: document.getElementById(tab.getAttribute("data-cert-tab")) };
+    }).filter(function (p) { return p.group; });
+
+    // A group's top measured within the scroll content — stable regardless of
+    // offsetParent, and recomputed on demand so it survives resize/reflow.
+    var groupTop = function (group) {
+      return group.getBoundingClientRect().top
+        - certScroll.getBoundingClientRect().top
+        + certScroll.scrollTop;
+    };
+
+    var setActive = function (idx) {
+      certPairs.forEach(function (p, i) {
+        if (i === idx) p.tab.setAttribute("aria-current", "true");
+        else p.tab.removeAttribute("aria-current");
+      });
+    };
+
+    // The active group is the last one whose top has scrolled past the panel's
+    // top edge (+ a small threshold so a header counts once it's pinned).
+    var spy = function () {
+      // At the bottom, the final groups may be too short to ever reach the top
+      // edge — but reaching the bottom means you've arrived at the last one, so
+      // activate it outright instead of leaving an earlier group highlighted.
+      if (certScroll.scrollTop + certScroll.clientHeight >= certScroll.scrollHeight - 4) {
+        setActive(certPairs.length - 1);
+        return;
+      }
+      var pos = certScroll.scrollTop + 12;
+      var active = 0;
+      certPairs.forEach(function (p, i) {
+        if (groupTop(p.group) <= pos) active = i;
+      });
+      setActive(active);
+    };
+
+    certPairs.forEach(function (p, i) {
+      p.tab.addEventListener("click", function () {
+        setActive(i);                          // immediate feedback, don't wait for scroll
+        certScroll.scrollTo({ top: Math.max(0, groupTop(p.group) - 4) });
+      });
+    });
+
+    var spyPending = false;
+    certScroll.addEventListener("scroll", function () {
+      if (spyPending) return;
+      spyPending = true;
+      window.requestAnimationFrame(function () { spyPending = false; spy(); });
+    }, { passive: true });
+    spy();
+  }
+
   /* ---- Reveal on scroll ---------------------------------- */
   var reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && reveals.length) {
