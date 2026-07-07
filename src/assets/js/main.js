@@ -128,6 +128,18 @@
     prev.addEventListener("click", function () { scrollToSlide(activeIndex - 1); });
     next.addEventListener("click", function () { scrollToSlide(activeIndex + 1); });
 
+    // Click a peek to promote it — no need to reach for the arrows. Only the
+    // active slide follows its (stretched) link; clicking any collapsed slide
+    // instead brings it to the emphasized position. Enter on a peek's link
+    // fires a click here too, so keyboard promotion comes for free.
+    slides.forEach(function (s, i) {
+      s.addEventListener("click", function (e) {
+        if (s.classList.contains("is-active")) return;   // active: let the link open
+        e.preventDefault();
+        scrollToSlide(i);
+      });
+    });
+
     updateActive();
     track.addEventListener("scroll", function () {
       // A button jump drives the emphasis itself; don't let free-scroll tracking

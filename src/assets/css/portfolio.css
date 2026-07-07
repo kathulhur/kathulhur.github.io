@@ -216,6 +216,8 @@
    its visual and detail. Scroll and the emphasis travels with you. */
 .work-track.is-enhanced .work-slide { width: min(74vw, 20rem); }
 .work-track.is-enhanced .work-slide.is-active { width: min(92vw, 40rem); }
+/* A collapsed peek promotes itself on click, so it reads as clickable. */
+.work-track.is-enhanced .work-slide:not(.is-active) { cursor: pointer; }
 /* During a button jump, drop mandatory snap so it can't chase the moving
    snap points while widths animate — that was the overshoot-and-bounce. */
 .work-track.is-navigating { scroll-snap-type: none; }
