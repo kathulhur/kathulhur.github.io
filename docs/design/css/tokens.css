@@ -14,10 +14,10 @@
 
   /* ---- Type scale — bold & editorial --------------------- */
   /* Fluid where it matters (display/H1), fixed for reading.   */
-  --step-display: clamp(2.25rem, 1.5rem + 3.6vw, 4rem);   /* hero */
-  --step-h1:      clamp(1.75rem, 1.3rem + 2.1vw, 2.6rem);
-  --step-h2:      clamp(1.3rem, 1.1rem + 1vw, 1.7rem);
-  --step-h3:      1.15rem;
+  --step-display: clamp(1.85rem, 1.35rem + 2.4vw, 3rem);  /* hero */
+  --step-h1:      clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+  --step-h2:      clamp(1.15rem, 1.03rem + 0.6vw, 1.4rem);
+  --step-h3:      1.05rem;
   --step-body:    1rem;        /* 16px — comfortable reading   */
   --step-sm:      0.875rem;    /* 14px                         */
   --step-label:   0.72rem;     /* ~11.5px — eyebrows / meta    */
@@ -48,7 +48,7 @@
   --space-10:8rem;      /*128 */
 
   /* Rhythm between major sections — the load-bearing space.    */
-  --section-gap: clamp(3rem, 1.5rem + 5vw, 5.5rem);
+  --section-gap: clamp(2.5rem, 1.5rem + 3.6vw, 4.5rem);
 
   /* ---- Layout -------------------------------------------- */
   --measure: 68ch;          /* max reading width              */

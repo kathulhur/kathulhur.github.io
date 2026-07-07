@@ -75,7 +75,7 @@
    color touches exactly one keyword.
    ============================================================ */
 .hero {
-  padding-block: clamp(2.5rem, 1.5rem + 6vw, 5rem) var(--section-gap);
+  padding-block: clamp(2rem, 1.3rem + 4vw, 3.75rem) var(--section-gap);
 }
 .status {
   display: inline-flex; align-items: center; gap: var(--space-2);
@@ -222,7 +222,7 @@
 
 /* Large ghosted index numeral — the primary, colorless accent. */
 .work-index {
-  font-size: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+  font-size: clamp(1.9rem, 1.6rem + 1.4vw, 2.6rem);
   font-weight: var(--weight-bold); line-height: 0.9;
   letter-spacing: -0.04em; color: var(--ink);
   opacity: 0.1; font-variant-numeric: tabular-nums;
@@ -240,7 +240,7 @@
   color: var(--ink-faint);
 }
 .work-slide h3 {
-  font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
   letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);
 }
 /* Title stays ink; an indigo rule DRAWS beneath it on hover/focus. */
@@ -372,7 +372,7 @@ a.c-name:hover { color: var(--identity); text-decoration: none; }
   letter-spacing: var(--tracking-label); color: var(--ink-faint);
   text-transform: uppercase;
 }
-.timeline-item h3 { font-size: 1.15rem; }
+.timeline-item h3 { font-size: 1.05rem; }
 .timeline-item .role-org { color: var(--ink-muted); }
 .timeline-item p { color: var(--ink-muted); font-size: var(--step-sm); }
 
@@ -409,7 +409,7 @@ a.c-name:hover { color: var(--identity); text-decoration: none; }
 .contact { padding-block: var(--section-gap); }
 .contact .big-mail {
   display: inline-block; margin-top: var(--space-5);
-  font-size: clamp(1.6rem, 1rem + 3.5vw, 3rem);
+  font-size: clamp(1.4rem, 0.95rem + 2.6vw, 2.4rem);
   font-weight: var(--weight-bold); letter-spacing: -0.03em;
   color: var(--ink);
 }
