@@ -311,6 +311,83 @@
 }
 
 /* ============================================================
+   WRITING — articles & publications as an editorial reading
+   list. Like the certificates panel, the region has a capped
+   height: adding more pieces scrolls INSIDE it (masked top &
+   bottom) instead of pushing the page taller. Rows are divided
+   by a hairline (the list idiom), never boxed. A quiet kind
+   label and year frame the top line; the title carries a
+   draw-on-hover underline like the work slides, and the whole
+   row is clickable via the stretched title link.
+   ============================================================ */
+.writing-shell { position: relative; }
+.writing-scroll {
+  max-height: clamp(20rem, 56vh, 30rem);
+  overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 6%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 6%, #000 92%, transparent 100%);
+  padding-block: var(--space-2);
+}
+.writing-note {
+  margin-top: var(--space-4); font-size: var(--step-sm); color: var(--ink-faint);
+}
+.writing-list { display: grid; }
+.post {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3) var(--space-6);
+  align-items: baseline;
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--line);
+}
+.writing-list .post:last-child { border-bottom: 1px solid var(--line); }
+
+.post-kind {
+  font-size: var(--step-label); letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--ink-faint);
+  font-weight: var(--weight-semibold);
+}
+.post-year {
+  justify-self: end;
+  font-size: var(--step-label); letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* Title, blurb and outlet span the full width below the top line. */
+.post-main { grid-column: 1 / -1; display: grid; gap: var(--space-2); min-width: 0; }
+.post h3 {
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);
+}
+.post h3 a {
+  color: var(--ink); position: relative;
+  display: inline-flex; align-items: baseline; gap: var(--space-2);
+}
+.post h3 a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -0.1em;
+  height: 2px; background: var(--identity);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease);
+}
+.post:hover h3 a::after,
+.post h3 a:focus-visible::after { transform: scaleX(1); }
+.post h3 a:hover { color: var(--ink); text-decoration: none; }
+.post h3 .arrow {
+  color: var(--ink-faint);
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.post:hover h3 .arrow { transform: translate(2px, -2px); color: var(--identity); }
+
+.post-desc { color: var(--ink-muted); font-size: var(--step-sm); max-width: 60ch; }
+.post-outlet {
+  color: var(--ink-muted); font-size: var(--step-sm);
+  margin-top: var(--space-1);
+}
+
+/* ============================================================
    CERTIFICATES — capped-height, internally scrolling.
    The region has a fixed max-height; adding more items scrolls
    INSIDE it (masked top & bottom) instead of pushing page height.

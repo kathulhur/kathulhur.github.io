@@ -3,7 +3,7 @@
    ------------------------------------------------------------
    Philosophy
    · Space is the primary grouping mechanism, not borders.
-   · One identity color (indigo). Neutrals do the heavy lifting.
+   · One identity color (plum). Neutrals do the heavy lifting.
    · Borders are hairline and intentional — mostly side lines.
    · One typeface (Inter). Hierarchy comes from size/weight/space.
    ============================================================ */
@@ -79,10 +79,10 @@
   --ink-muted: #565c66;   /* secondary text                  */
   --ink-faint: #8a909b;   /* meta, captions                  */
 
-  /* Identity — indigo. Used sparingly: links, focus, one keyword. */
-  --identity:        #3b4cca;
-  --identity-strong: #2f3ea8;   /* hover / pressed            */
-  --identity-tint:   #eceeffc0; /* wash behind featured work  */
+  /* Identity — plum. Used sparingly: links, focus, one keyword. */
+  --identity:        #7d3a63;
+  --identity-strong: #632c4e;   /* hover / pressed            */
+  --identity-tint:   #f3e7efc0; /* wash behind featured work  */
   --on-identity:     #ffffff;   /* text on solid identity     */
 
   /* Lines — hairline, intentional. Prefer side lines.         */
@@ -106,7 +106,7 @@
 
 /* ==========================================================
    COLOR — DARK
-   Not pure black. Indigo lightens for contrast on dark paper.
+   Not pure black. Plum lightens for contrast on dark paper.
    ========================================================== */
 :root[data-theme="dark"] {
   --bg:        #0e1014;
@@ -116,9 +116,9 @@
   --ink-muted: #a2a8b3;
   --ink-faint: #6e747f;
 
-  --identity:        #7c8cff;
-  --identity-strong: #94a1ff;
-  --identity-tint:   #1a1f3a80;
+  --identity:        #d090b9;
+  --identity-strong: #e0abcf;
+  --identity-tint:   #2c1d2880;
   --on-identity:     #0e1014;
 
   --line:        #262b34;
@@ -145,9 +145,9 @@
     --ink:       #e8eaed;
     --ink-muted: #a2a8b3;
     --ink-faint: #6e747f;
-    --identity:        #7c8cff;
-    --identity-strong: #94a1ff;
-    --identity-tint:   #1a1f3a80;
+    --identity:        #d090b9;
+    --identity-strong: #e0abcf;
+    --identity-tint:   #2c1d2880;
     --on-identity:     #0e1014;
     --line:        #262b34;
     --line-strong: #333a45;
