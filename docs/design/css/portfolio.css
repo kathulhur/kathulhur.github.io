@@ -177,6 +177,10 @@
   overflow-x: auto; overflow-y: hidden;
   scroll-snap-type: x mandatory; scroll-behavior: smooth;
   scrollbar-width: none;
+  /* JS owns the scroll position during a button jump; don't let the browser
+     also nudge it to compensate for the active slide resizing, or the two
+     fight and the incoming card jitters (worst when navigating backward). */
+  overflow-anchor: none;
   /* Edge fade via a variable mask: a side only fades once there is
      content hidden past it (toggled by JS). Keeps the first slide
      un-clipped at rest and the last slide fully readable at the end. */
@@ -195,10 +199,9 @@
   position: relative;
   display: grid; align-content: start; gap: var(--space-4);
   padding: var(--space-1) var(--space-7);
-  border-left: 1px solid var(--line);      /* the one intentional divider */
   transition: width var(--dur-slow) var(--ease);
 }
-.work-slide:first-child { border-left: 0; padding-left: 0; }
+.work-slide:first-child { padding-left: 0; }
 
 /* Trailing flex spacer — leaves enough empty track after the last project
    so it can scroll all the way to the left edge and expand. Sized against the
@@ -213,6 +216,9 @@
    its visual and detail. Scroll and the emphasis travels with you. */
 .work-track.is-enhanced .work-slide { width: min(74vw, 20rem); }
 .work-track.is-enhanced .work-slide.is-active { width: min(92vw, 40rem); }
+/* During a button jump, drop mandatory snap so it can't chase the moving
+   snap points while widths animate — that was the overshoot-and-bounce. */
+.work-track.is-navigating { scroll-snap-type: none; }
 
 /* Large ghosted index numeral — the primary, colorless accent. */
 .work-index {
@@ -278,9 +284,11 @@
 }
 
 /* Abstract preview — bounded height so the scroller never grows tall; not a
-   screenshot, so it never distracts. Collapses to nothing on peek slides and
-   opens for whichever project is currently at the left. */
+   screenshot, so it never distracts. On peek slides it doesn't vanish; it
+   shrinks and a scrim settles over it, so the next project reads as a quiet
+   preview rather than just a name. */
 .project-visual {
+  position: relative;
   height: clamp(9rem, 18vw, 13rem); border-radius: var(--radius);
   background:
     radial-gradient(120% 120% at 15% 15%, color-mix(in srgb, var(--identity) 20%, transparent), transparent 55%),
@@ -288,8 +296,18 @@
   display: grid; place-items: center; overflow: hidden;
   transition: height var(--dur-slow) var(--ease), opacity var(--dur-slow) var(--ease);
 }
+/* Scrim that quiets an out-of-focus preview — invisible on the active slide,
+   drawn over the collapsed ones. */
+.project-visual::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: color-mix(in srgb, var(--surface) 62%, transparent);
+  opacity: 0; transition: opacity var(--dur-slow) var(--ease);
+}
 .work-track.is-enhanced .work-slide:not(.is-active) .project-visual {
-  height: 0; opacity: 0;
+  height: clamp(5.5rem, 12vw, 7.5rem);
+}
+.work-track.is-enhanced .work-slide:not(.is-active) .project-visual::after {
+  opacity: 1;
 }
 
 /* ============================================================
