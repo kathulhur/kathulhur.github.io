@@ -33,6 +33,18 @@ body {
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
+/* ---- Theme switch: circular wipe (View Transitions) ------
+   The clip animation lives in JS (radiates from the toggle). Here we
+   just stop the default snapshot crossfade and stack the new theme on
+   top, so the wipe reveals it cleanly over the frozen old one. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 0; }
+::view-transition-new(root) { z-index: 1; }
+
 img, picture, svg, video { display: block; max-width: 100%; }
 
 /* ---- Headings — tight, editorial ------------------------- */

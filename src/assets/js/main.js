@@ -7,17 +7,49 @@
   var root = document.documentElement;
   var toggle = document.querySelector("[data-theme-toggle]");
 
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
   function currentTheme() {
     var set = root.getAttribute("data-theme");
     if (set) return set;
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
+  function applyTheme(next) {
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    toggle.setAttribute("aria-pressed", String(next === "dark"));
+  }
   if (toggle) {
     toggle.addEventListener("click", function () {
       var next = currentTheme() === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      try { localStorage.setItem("theme", next); } catch (e) {}
-      toggle.setAttribute("aria-pressed", String(next === "dark"));
+
+      // Reveal the new palette with a circular wipe radiating from the
+      // toggle (View Transitions API). Older browsers and reduced-motion
+      // users just swap — the body's background/color still crossfades.
+      if (!document.startViewTransition || prefersReducedMotion.matches) {
+        applyTheme(next);
+        return;
+      }
+
+      var rect = toggle.getBoundingClientRect();
+      var x = rect.left + rect.width / 2;
+      var y = rect.top + rect.height / 2;
+      var endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      document.startViewTransition(function () { applyTheme(next); })
+        .ready.then(function () {
+          root.animate(
+            { clipPath: [
+                "circle(0px at " + x + "px " + y + "px)",
+                "circle(" + endRadius + "px at " + x + "px " + y + "px)"
+              ] },
+            { duration: 480, easing: "cubic-bezier(0.2, 0.6, 0.2, 1)",
+              pseudoElement: "::view-transition-new(root)" }
+          );
+        });
     });
   }
 
