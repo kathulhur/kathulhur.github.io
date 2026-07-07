@@ -377,20 +377,44 @@ a.c-name:hover { color: var(--identity); text-decoration: none; }
 .timeline-item p { color: var(--ink-muted); font-size: var(--step-sm); }
 
 /* ============================================================
-   STACK — grouped purely by space + a short eyebrow per group.
-   No cards, no boxes.
+   STACK — each group is a row: a fixed label column, then the
+   items flowing as an inline wrapping list. Growth spends
+   horizontal width and wraps, so long lists stay compact
+   vertically. Groups divided by a hairline, not boxes.
    ============================================================ */
-.stack-groups {
-  display: grid; gap: var(--space-7);
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+.stack-groups { display: grid; }
+.stack-group {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--space-6);
+  align-items: baseline;
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--line);
 }
-.stack-group h3 {
+.stack-group:last-child { border-bottom: 1px solid var(--line); }
+.stack-group dt {
   font-size: var(--step-label); letter-spacing: var(--tracking-label);
   text-transform: uppercase; color: var(--ink-muted);
-  font-weight: var(--weight-semibold); margin-bottom: var(--space-4);
+  font-weight: var(--weight-semibold);
 }
-.stack-group ul { display: grid; gap: var(--space-2); }
-.stack-group li { color: var(--ink); font-size: var(--step-sm); }
+.stack-group dd {
+  display: flex; flex-wrap: wrap;
+  column-gap: var(--space-2); row-gap: var(--space-2);
+}
+.stack-group dd span {
+  color: var(--ink); font-size: var(--step-sm);
+  background: var(--surface); border-radius: var(--radius-pill);
+  padding: 0.3rem 0.7rem;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.stack-group dd span:hover { background: var(--identity-tint); color: var(--identity-strong); }
+
+@media (max-width: 34rem) {
+  .stack-group {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
 
 /* ============================================================
    ABOUT
