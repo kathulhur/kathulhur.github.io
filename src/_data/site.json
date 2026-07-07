@@ -1,0 +1,13 @@
+{
+  "name": "Joseph Karl",
+  "brand": "Joseph",
+  "title": "Joseph Karl — Full-stack Developer",
+  "description": "Portfolio of Joseph Karl, a full-stack developer who designs and ships reliable, thoughtful web products end-to-end.",
+  "email": "joseph.dev.ph@gmail.com",
+  "url": "https://josephkarl.dev",
+  "available": true,
+  "social": {
+    "github": "#",
+    "linkedin": "#"
+  }
+}

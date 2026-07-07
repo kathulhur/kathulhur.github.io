@@ -1,0 +1,248 @@
+---
+layout: base.njk
+title: Joseph Karl — Full-stack Developer
+description: Portfolio of Joseph Karl, a full-stack developer who designs and ships reliable, thoughtful web products end-to-end.
+---
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container">
+      {% if site.available %}<p class="status"><span class="pulse" aria-hidden="true"></span> Available for new work</p>{% endif %}
+      <h1>Full-stack developer building <span class="accent">reliable</span> web products.</h1>
+      <p class="hero-lead">
+        I'm Joseph — I design and ship end-to-end applications, from the data model
+        up to the last pixel. I care about clarity, performance, and code that ages well.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">See selected work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK (the highlight) ============ -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Selected work</p>
+        <h2>A few things I've designed, built, and shipped.</h2>
+        <p class="sub">Each project below is something I owned end-to-end — problem framing, architecture, and delivery.</p>
+      </div>
+
+      <div class="work-scroller reveal">
+        <div class="work-controls">
+          <span class="work-hint">Scroll to explore →</span>
+          <button class="scroll-btn" type="button" data-scroll="prev" aria-label="Previous projects" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="scroll-btn" type="button" data-scroll="next" aria-label="More projects">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+
+        <div class="work-track" tabindex="0" role="region" aria-label="Selected projects — horizontally scrollable">
+          {% for project in projects %}
+          <article class="work-slide">
+            <p class="work-index" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</p>
+            <div class="project-visual" aria-hidden="true">{{ project.visual | safe }}</div>
+            <div class="work-body">
+              {% if project.liveUrl %}
+              <h3><a class="stretched" href="{{ project.liveUrl }}" target="_blank" rel="noopener">{{ project.name }}</a></h3>
+              {% else %}
+              <h3>{{ project.name }}</h3>
+              {% endif %}
+              <div class="work-detail">
+                <p>{{ project.blurb }}</p>
+                <ul class="tags">{% for tag in project.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
+                {% if project.liveUrl %}
+                <span class="project-link">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+
+          <!-- Trailing room so the last project can still scroll to the left edge -->
+          <div class="work-spacer" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WRITING ============ -->
+  <section class="section" id="writing">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Writing</p>
+        <h2>Articles &amp; publications.</h2>
+        <p class="sub">Essays and deep-dives on building for the web — the ideas behind the work, written down.</p>
+      </div>
+
+      <div class="writing-shell reveal">
+        <div class="writing-scroll" tabindex="0" role="region" aria-label="Articles &amp; publications — scrollable list">
+          <ul class="writing-list">
+        <li class="post">
+          <p class="post-kind">Essay</p>
+          <span class="post-year">2025</span>
+          <div class="post-main">
+            <h3><a class="stretched" href="#">Designing for the empty state <span class="arrow" aria-hidden="true">↗</span></a></h3>
+            <p class="post-desc">Why the blank screen deserves as much care as the happy path — and a small system for handling it well.</p>
+            <p class="post-outlet">Smashing Magazine</p>
+          </div>
+        </li>
+
+        <li class="post">
+          <p class="post-kind">Deep-dive</p>
+          <span class="post-year">2025</span>
+          <div class="post-main">
+            <h3><a class="stretched" href="#">A pragmatic guide to database migrations that don't wake you up <span class="arrow" aria-hidden="true">↗</span></a></h3>
+            <p class="post-desc">Expand-and-contract, backfills, and the boring discipline that keeps schema changes zero-downtime.</p>
+            <p class="post-outlet">Personal blog</p>
+          </div>
+        </li>
+
+        <li class="post">
+          <p class="post-kind">Talk</p>
+          <span class="post-year">2024</span>
+          <div class="post-main">
+            <h3><a class="stretched" href="#">CSS that ages well: tokens over utilities <span class="arrow" aria-hidden="true">↗</span></a></h3>
+            <p class="post-desc">A conference talk on building a design language you can still read in two years.</p>
+            <p class="post-outlet">FrontendConf · Manila</p>
+          </div>
+        </li>
+
+        <li class="post">
+          <p class="post-kind">Article</p>
+          <span class="post-year">2024</span>
+          <div class="post-main">
+            <h3><a class="stretched" href="#">Shipping a browser extension without losing your mind <span class="arrow" aria-hidden="true">↗</span></a></h3>
+            <p class="post-desc">What I learned wiring a one-click job capture into GetHired across Chrome and Firefox.</p>
+            <p class="post-outlet">Dev.to</p>
+          </div>
+        </li>
+          </ul>
+        </div>
+        <p class="writing-note">4 pieces · scroll within the panel to see them all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATES ============ -->
+  <section class="section" id="certificates">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Certifications</p>
+        <h2>Credentials, kept compact.</h2>
+        <p class="sub">A capped, scrollable list — it holds every certificate inside a fixed height instead of running away down the page.</p>
+      </div>
+
+      <div class="certs-shell reveal">
+        <div class="certs-scroll" tabindex="0" role="region" aria-label="Certifications — scrollable list">
+          <ul class="certs-list">
+            {% for cert in certificates %}
+            <li class="cert">
+              <div class="c-main">
+                <a class="c-name" href="{{ cert.file | url }}" target="_blank" rel="noopener" title="{{ cert.name }} · {{ cert.issuer }} · {{ cert.date }}">{{ cert.name }}</a>
+                <span class="c-issuer">{{ cert.issuer }}</span>
+              </div>
+              <span class="c-year">{{ cert.year }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <p class="certs-note">{{ certificates | length }} certifications · scroll within the panel to see them all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Experience</p>
+        <h2>Where I've spent my time.</h2>
+      </div>
+      <div class="timeline reveal">
+        {% for job in experience %}
+        <div class="timeline-item">
+          <p class="when">{{ job.when }}</p>
+          <h3>{{ job.role }}</h3>
+          <p class="role-org">{{ job.org }}{% if job.meta %} · {{ job.meta }}{% endif %}</p>
+          <p>{{ job.summary }}</p>
+          {% if job.points %}
+          <ul class="timeline-points">
+            {% for point in job.points %}<li>{{ point }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STACK ============ -->
+  <section class="section" id="stack">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Toolkit</p>
+        <h2>The tools I reach for.</h2>
+      </div>
+      <dl class="stack-groups reveal">
+        <div class="stack-group">
+          <dt>Languages</dt>
+          <dd><span>Ruby</span><span>TypeScript / JavaScript</span><span>Python</span><span>SQL</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Frameworks</dt>
+          <dd><span>Rails 8</span><span>Hotwire</span><span>Node</span><span>Stimulus</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Data</dt>
+          <dd><span>PostgreSQL</span><span>Solid Queue / Cache / Cable</span><span>SQLite</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Platform</dt>
+          <dd><span>Docker</span><span>Kamal</span><span>AWS</span><span>Linux</span><span>CI/CD</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">About</p>
+      </div>
+      <div class="about reveal">
+        <p style="font-size:var(--step-h3); color:var(--ink); max-width:var(--measure);">
+          I build software the way I'd want to use it — <strong>clear, fast, and honest</strong>
+          about its edges.
+        </p>
+        <p style="margin-top:var(--space-6)">
+          My work sits at the intersection of engineering and design. I like problems that
+          need both a solid data model and a considered interface, and I care as much about
+          the quiet details — empty states, loading, error copy — as the headline features.
+        </p>
+        <p>
+          When I'm not building, I'm usually reading about systems design, refining my own
+          tools, or exploring on foot.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <p class="eyebrow reveal">Contact</p>
+      <div class="reveal">
+        <h2 style="max-width:16ch; margin-top:var(--space-4)">Have something to build? Let's talk.</h2>
+        <a class="big-mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </div>
+    </div>
+  </section>
+</main>
