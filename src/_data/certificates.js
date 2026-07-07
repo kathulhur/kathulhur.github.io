@@ -1,8 +1,9 @@
 /**
  * Certifications — real, verifiable credentials shown in the capped/scrollable
- * Certificates section. Source PDFs live in docs/profile/certificates/ and are
- * copied into /assets/certificates/ so each row links to the actual statement
- * of accomplishment.
+ * Certificates section. Source files live in docs/profile/ (DataCamp PDFs under
+ * certificates/, Boot.dev PNGs under bootdotdev/) and are copied into
+ * /assets/certificates/ so each row links to the actual statement of
+ * accomplishment.
  *
  * Grouped by track so the section stays legible as more technologies land.
  * Each group is a labelled cluster (SQL, Python, …); add a new object to
@@ -59,6 +60,82 @@ const groups = [
         year: "2026",
         date: "Jun 2026",
         file: "/assets/certificates/introduction-to-sql.pdf",
+      },
+      {
+        name: "Learn SQL",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "May 2026",
+        file: "/assets/certificates/learn-sql.png",
+      },
+    ],
+  },
+  {
+    label: "Python",
+    items: [
+      {
+        name: "Learn Object-Oriented Programming in Python",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "Jul 2026",
+        file: "/assets/certificates/learn-oop-in-python.png",
+      },
+      {
+        name: "Introduction to Python",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "Jun 2026",
+        file: "/assets/certificates/introduction-to-python.png",
+      },
+    ],
+  },
+  {
+    label: "Cloud & DevOps",
+    items: [
+      {
+        name: "Learn Linux",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "Jun 2026",
+        file: "/assets/certificates/learn-linux.png",
+      },
+      {
+        name: "Learn AWS",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "Jun 2026",
+        file: "/assets/certificates/learn-aws.png",
+      },
+      {
+        name: "Learn Kubernetes",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "May 2026",
+        file: "/assets/certificates/learn-kubernetes.png",
+      },
+    ],
+  },
+  {
+    label: "Go",
+    items: [
+      {
+        name: "Learn Go",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "Jun 2026",
+        file: "/assets/certificates/learn-go.png",
+      },
+    ],
+  },
+  {
+    label: "JavaScript",
+    items: [
+      {
+        name: "Learn JavaScript",
+        issuer: "Boot.dev",
+        year: "2026",
+        date: "Jun 2026",
+        file: "/assets/certificates/learn-javascript.png",
       },
     ],
   },
