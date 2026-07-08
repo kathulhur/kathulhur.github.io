@@ -245,16 +245,20 @@
   font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
   letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);
 }
-/* Title stays ink; an indigo rule DRAWS beneath it on hover/focus. */
-.work-slide h3 a { color: var(--ink); position: relative; }
-.work-slide h3 a::after {
+/* Title stays ink; an indigo rule DRAWS beneath it on hover/focus. The anchor
+   itself stays UNpositioned so its stretched ::before overlay (below) resolves
+   against .work-slide and covers the whole card. The underline therefore rides
+   on an inner .title-text span, which owns the positioning context instead. */
+.work-slide h3 a { color: var(--ink); }
+.work-slide h3 a .title-text { position: relative; }
+.work-slide h3 a .title-text::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -0.14em;
   height: 2px; background: var(--identity);
   transform: scaleX(0); transform-origin: left;
   transition: transform var(--dur-slow) var(--ease);
 }
-.work-slide:hover h3 a::after,
-.work-slide h3 a:focus-visible::after { transform: scaleX(1); }
+.work-slide:hover h3 a .title-text::after,
+.work-slide h3 a:focus-visible .title-text::after { transform: scaleX(1); }
 .work-slide h3 a:hover { color: var(--ink); text-decoration: none; }
 
 .work-slide p { color: var(--ink-muted); }
