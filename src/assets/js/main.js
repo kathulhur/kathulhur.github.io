@@ -194,12 +194,27 @@
       return { tab: tab, group: document.getElementById(tab.getAttribute("data-cert-tab")) };
     }).filter(function (p) { return p.group; });
 
+    // Entries begin PAD below the panel's top edge (the panel's top padding);
+    // that line is where a group's first row "touches" the tab rail.
+    var PAD = 12;
+
     // A group's top measured within the scroll content — stable regardless of
     // offsetParent, and recomputed on demand so it survives resize/reflow.
     var groupTop = function (group) {
       return group.getBoundingClientRect().top
         - certScroll.getBoundingClientRect().top
         + certScroll.scrollTop;
+    };
+
+    // Pad the panel's end so even the short trailing groups can be scrolled
+    // until their first row reaches the top edge (otherwise they pile against
+    // the bottom and their tab never lights). Room needed = a viewport minus
+    // the last group's own height; recomputed on resize since the 2→1 column
+    // switch changes group heights.
+    var padTail = function () {
+      var last = certPairs[certPairs.length - 1].group;
+      var room = certScroll.clientHeight - last.offsetHeight - PAD;
+      certScroll.style.paddingBottom = Math.max(room, PAD) + "px";
     };
 
     var setActive = function (idx) {
@@ -209,28 +224,25 @@
       });
     };
 
-    // The active group is the last one whose top has scrolled past the panel's
-    // top edge (+ a small threshold so a header counts once it's pinned).
+    // A group is active once its first row has reached the top edge — i.e. its
+    // top touches the tab rail. The last group to have crossed that line wins.
     var spy = function () {
-      // At the bottom, the final groups may be too short to ever reach the top
-      // edge — but reaching the bottom means you've arrived at the last one, so
-      // activate it outright instead of leaving an earlier group highlighted.
-      if (certScroll.scrollTop + certScroll.clientHeight >= certScroll.scrollHeight - 4) {
-        setActive(certPairs.length - 1);
-        return;
-      }
-      var pos = certScroll.scrollTop + 12;
+      var line = certScroll.scrollTop + PAD;
       var active = 0;
       certPairs.forEach(function (p, i) {
-        if (groupTop(p.group) <= pos) active = i;
+        if (groupTop(p.group) <= line) active = i;
       });
+      // Subpixel scrollHeight can stop a hair short; the physical bottom means
+      // you've arrived at the last group.
+      if (certScroll.scrollTop >= certScroll.scrollHeight - certScroll.clientHeight - 1)
+        active = certPairs.length - 1;
       setActive(active);
     };
 
     certPairs.forEach(function (p, i) {
       p.tab.addEventListener("click", function () {
         setActive(i);                          // immediate feedback, don't wait for scroll
-        certScroll.scrollTo({ top: Math.max(0, groupTop(p.group) - 4) });
+        certScroll.scrollTo({ top: Math.max(0, groupTop(p.group) - PAD) });
       });
     });
 
@@ -240,6 +252,8 @@
       spyPending = true;
       window.requestAnimationFrame(function () { spyPending = false; spy(); });
     }, { passive: true });
+    window.addEventListener("resize", function () { padTail(); spy(); });
+    padTail();
     spy();
   }
 
