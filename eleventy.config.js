@@ -10,6 +10,9 @@ module.exports = function (eleventyConfig) {
   // Ship CSS/JS untouched: assets/** → _site/assets/**
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
+  // GitHub Pages reads CNAME from the site root to bind the custom domain.
+  eleventyConfig.addPassthroughCopy("src/CNAME");
+
   // Keep the browser in sync while editing styles/scripts.
   eleventyConfig.addWatchTarget("src/assets/");
 
