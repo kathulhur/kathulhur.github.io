@@ -338,6 +338,18 @@
 .writing-note {
   margin-top: var(--space-4); font-size: var(--step-sm); color: var(--ink-faint);
 }
+.writing-empty {
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: grid; gap: var(--space-2);
+}
+.writing-empty-title {
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);
+  color: var(--ink);
+}
+.writing-empty-note { color: var(--ink-muted); font-size: var(--step-sm); }
 .writing-list { display: grid; }
 .post {
   position: relative;
