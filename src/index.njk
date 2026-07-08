@@ -10,10 +10,7 @@ description: Portfolio of Joseph Karl, a full-stack developer who designs and sh
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="container">
-      <div class="hero-meta">
-        {% if site.available %}<p class="status"><span class="pulse" aria-hidden="true"></span> Available for new work</p>{% endif %}
-        {% if site.resume %}<a class="resume-link" href="{{ site.resume | url }}" download>Résumé <span class="arrow" aria-hidden="true">↓</span></a>{% endif %}
-      </div>
+      <p class="hero-meta">{% if site.available %}<span class="status"><span class="pulse" aria-hidden="true"></span> Available for new work</span>{% endif %}{% if site.available and site.resume %}, {% endif %}{% if site.resume %}<a class="resume-link" href="{{ site.resume | url }}" download>download my résumé <span class="arrow" aria-hidden="true">↓</span></a>{% endif %}</p>
       <h1>Full-stack developer building <span class="accent">reliable</span> web products.</h1>
       <p class="hero-lead">
         I'm Joseph — I design and ship end-to-end applications, from the data model
