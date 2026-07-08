@@ -7,3 +7,6 @@ _site/
 
 # Private source material — briefs/certs used to author the site, not published
 docs/profile/
+
+# Generated resume — kept local, not published
+docs/Joseph-Karl-Crisostomo-Resume.pdf
