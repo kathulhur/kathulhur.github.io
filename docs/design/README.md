@@ -46,5 +46,6 @@ python3 -m http.server -d docs/design 8000   # → http://localhost:8000
 ```
 
 ## Placeholder content
-Copy, project names (GetHired, Lakad), experience, and social links are placeholders —
-swap them for real content. The email is already set to `joseph.dev.ph@gmail.com`.
+This mockup predates the live Eleventy build under `src/`, which now carries the real
+copy, projects, experience, and social links. Treat this folder as a visual reference for
+the design system, not a source of current content. The email is `joseph.dev.ph@gmail.com`.

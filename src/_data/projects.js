@@ -31,31 +31,12 @@ module.exports = [
     </svg>`,
   },
   {
-    name: "Lakad",
-    slug: "lakad",
-    blurb:
-      "A SaaS that turns the tangled, multi-agency process of registering a Philippine micro-business into one guided roadmap. Built on a rules-as-data engine that encodes frequently-changing government regulations as effective-dated records — so the law can change without a code change.",
-    tags: ["Rails 8", "Hotwire", "PostgreSQL", "PWA"],
-    visual: `<svg width="86%" viewBox="0 0 320 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M40 60 H280" stroke="var(--ink-faint)" stroke-width="2.5" opacity="0.3" stroke-dasharray="3 9" stroke-linecap="round"/>
-      <circle cx="40" cy="60" r="12" fill="var(--identity)" opacity="0.9"/>
-      <circle cx="120" cy="60" r="12" fill="var(--identity)" opacity="0.9"/>
-      <circle cx="200" cy="60" r="12" fill="var(--identity)" opacity="0.45"/>
-      <circle cx="280" cy="60" r="12" fill="var(--surface-2)"/>
-      <rect x="24" y="92" width="32" height="8" rx="4" fill="var(--ink-faint)" opacity="0.4"/>
-      <rect x="104" y="92" width="32" height="8" rx="4" fill="var(--ink-faint)" opacity="0.4"/>
-      <rect x="184" y="92" width="32" height="8" rx="4" fill="var(--ink-faint)" opacity="0.25"/>
-      <rect x="264" y="92" width="32" height="8" rx="4" fill="var(--ink-faint)" opacity="0.25"/>
-      <rect x="40" y="118" width="240" height="7" rx="3.5" fill="var(--surface-2)"/>
-      <rect x="40" y="118" width="120" height="7" rx="3.5" fill="var(--identity)" opacity="0.6"/>
-    </svg>`,
-  },
-  {
     name: "Aqualytix",
     slug: "aqualytix",
     blurb:
       "A water-quality monitoring platform that digitizes a local water district's manual pumping-station logs — offline-first field capture, per-station alert thresholds, trend charts, and generated PDF reports. Deployed to AWS with Kamal and CloudWatch alerting.",
     tags: ["Rails", "Hotwire", "PWA", "AWS"],
+    liveUrl: "https://aqualytix.hackwithsef.xyz",
     visual: `<svg width="86%" viewBox="0 0 320 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect x="16" y="16" width="130" height="60" rx="9" fill="var(--surface-2)"/>
       <rect x="154" y="16" width="70" height="60" rx="9" fill="var(--surface-2)"/>
