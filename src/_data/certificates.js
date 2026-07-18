@@ -27,6 +27,13 @@ const groups = [
     label: "SQL",
     items: [
       {
+        name: "Database Design",
+        issuer: "DataCamp",
+        year: "2026",
+        date: "Jul 2026",
+        file: "/assets/certificates/database-design.pdf",
+      },
+      {
         name: "Exploratory Data Analysis in SQL",
         issuer: "DataCamp",
         year: "2026",
@@ -74,6 +81,27 @@ const groups = [
     label: "Python",
     items: [
       {
+        name: "Sentiment Analysis in Python",
+        issuer: "DataCamp",
+        year: "2026",
+        date: "Jul 2026",
+        file: "/assets/certificates/sentiment-analysis-in-python.pdf",
+      },
+      {
+        name: "Data Manipulation with Pandas",
+        issuer: "DataCamp",
+        year: "2026",
+        date: "Jul 2026",
+        file: "/assets/certificates/data-manipulation-with-pandas.pdf",
+      },
+      {
+        name: "Introduction to NumPy",
+        issuer: "DataCamp",
+        year: "2026",
+        date: "Jul 2026",
+        file: "/assets/certificates/introduction-to-numpy.pdf",
+      },
+      {
         name: "Learn Object-Oriented Programming in Python",
         issuer: "Boot.dev",
         year: "2026",
@@ -86,6 +114,18 @@ const groups = [
         year: "2026",
         date: "Jun 2026",
         file: "/assets/certificates/introduction-to-python.png",
+      },
+    ],
+  },
+  {
+    label: "AI Engineering",
+    items: [
+      {
+        name: "Claude Code 101",
+        issuer: "Anthropic",
+        year: "2026",
+        date: "Jul 2026",
+        file: "/assets/certificates/claude-code-101.pdf",
       },
     ],
   },
